@@ -135,7 +135,7 @@
 		</subsystem>
 		<subsystem xmlns="urn:jboss:domain:datasources:1.2">
 			<datasources>
-				<datasource jndi-name="java:/SSOA/ssoDS"
+				<!-- <datasource jndi-name="java:/SSOA/ssoDS"
 					pool-name="SSOA/ssoDS" enabled="true" use-java-context="true">
 					<connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
 					<driver>h2</driver>
@@ -143,7 +143,19 @@
 						<user-name>sa</user-name>
 						<password>sa</password>
 					</security>
-				</datasource>
+				</datasource> -->
+				<datasource jndi-name="java:/SSOA/ssoDS" pool-name="SSOA/ssoDS" enabled="true" jta="true" use-java-context="true" use-ccm="true">
+    			<connection-url>jdbc:mysql://mysql:3306/ssoa</connection-url>
+    			<driver>mysql<driver>
+    			<security>
+    			<user-name>sso</user-name>
+    			<password>sso</password>
+    			</security>
+    			<statement>
+    			<prepared-statement-cache-size>100</prepared-statement-cache-size>
+    			<share-prepared-statements/>
+    			</statement>
+    			</datasource>
 				<!-- ##DATASOURCES## -->
 				<drivers>
 					<driver name="h2" module="com.h2database.h2">
